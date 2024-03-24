@@ -1,6 +1,7 @@
-﻿using System.Reflection;
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
+using Application.Services.Brands;
+using Application.Services.Models;
 using Application.Services.UsersService;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,8 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
+using System.Reflection;
+using Application.Services.Fuels;
 
 namespace Application;
 
@@ -59,6 +62,10 @@ public static class ApplicationServiceRegistration
 
         services.AddSecurityServices<Guid, int>();
 
+        services.AddScoped<IBrandService, BrandManager>();
+        services.AddScoped<IModelService, ModelManager>();
+
+        services.AddScoped<IFuelService, FuelManager>();
         return services;
     }
 
